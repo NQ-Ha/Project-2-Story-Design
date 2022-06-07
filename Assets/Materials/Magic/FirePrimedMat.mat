@@ -104,6 +104,8 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Effect_Based_On_World_Position_1: 0
+    - _Effect_Based_On_World_Position_2: 0
     - _EnvironmentReflections: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
@@ -130,6 +132,10 @@ Material:
     - _Vocaroi_1: 1
     - _Vocaroi_2: 1
     - _WorkflowMode: 1
+    - _X_Scale_1: 1
+    - _X_Scale_2: 1
+    - _Y_Scale_1: 1
+    - _Y_Scale_2: 1
     - _ZWrite: 1
     - _coreLayerAmount_1: 0.22
     - _coreLayerAmount_2: 0.21
@@ -159,7 +165,7 @@ Material:
     - _verticalMovement_2: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Base_Colour: {r: 0, g: 0, b: 0, a: 1}
+    - _Base_Colour: {r: 0.3773585, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EffectEmission_1: {r: 0.18867922, g: 0.002669984, b: 0.0047140745, a: 0}
     - _EffectEmission_2: {r: 0.09411765, g: 0.010440349, b: 0.0039215707, a: 0}
