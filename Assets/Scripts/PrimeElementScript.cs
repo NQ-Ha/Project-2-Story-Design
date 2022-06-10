@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class PrimeElementScript : MonoBehaviour
 {
-    [Header("Primed Magics")]
+    [Header("Primed Magic Type")]
     public bool primeFire;
     public bool primeWater;
     public bool primeElectric;
     public bool primeNature;
 
+    [Header("Primed Magic Variables")]
+    public float cdTime = 3;
+
+    [Header("")]
     [SerializeField] TriggerElementScript otherElement;
+    [SerializeField] bool cdCheck;
+    [SerializeField] float cdCountDown;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +27,15 @@ public class PrimeElementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (cdCheck == true)
+        {
+            cdCountDown -= Time.deltaTime;
+            if(cdCountDown <= 0)
+            {
+                cdCheck = false;
+                cdCountDown = 0;
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision other)
@@ -36,53 +50,58 @@ public class PrimeElementScript : MonoBehaviour
             print(other.gameObject + ": No script is here");
         }
 
-        if (primeFire == true)
+        if (cdCheck == false)
         {
-            if(otherElement.triggerElectric == true)
+            if (primeFire == true)
             {
+                if (otherElement.triggerElectric == true)
+                {
 
+                }
+                else if (otherElement.triggerNature == true)
+                {
+
+                }
             }
-            else if(otherElement.triggerNature == true)
+            else if (primeWater == true)
             {
+                if (otherElement.triggerElectric == true)
+                {
 
+                }
+                else if (otherElement.triggerNature == true)
+                {
+
+                }
             }
-        }
-        else if (primeWater == true)
-        {
-            if (otherElement.triggerElectric == true)
+            else if (primeElectric == true)
             {
+                if (otherElement.triggerElectric == true)
+                {
 
+                }
+                else if (otherElement.triggerNature == true)
+                {
+
+                }
             }
-            else if (otherElement.triggerNature == true)
+            else if (primeNature == true)
             {
+                if (otherElement.triggerElectric == true)
+                {
 
+                }
+                else if (otherElement.triggerNature == true)
+                {
+
+                }
             }
-        }
-        else if (primeElectric == true)
-        {
-            if (otherElement.triggerElectric == true)
+            else
             {
-
+                print("No Primed Element found.");
             }
-            else if (otherElement.triggerNature == true)
-            {
-
-            }
-        }
-        else if (primeNature == true)
-        {
-            if (otherElement.triggerElectric == true)
-            {
-
-            }
-            else if (otherElement.triggerNature == true)
-            {
-
-            }
-        }
-        else
-        {
-            print("No Primed Element found.");
+            cdCheck = true;
+            cdCountDown = cdTime;
         }
     }
 
@@ -116,11 +135,16 @@ public class PrimeElementScript : MonoBehaviour
 
     }
 
-    // effect of a primed electric and trigger nature combo 
+    // Effect of a primed electric and trigger nature combo 
     public void electricNatureCombo()
     {
 
     }
 
+    // Effect of a primed nature and a trigger electric combo
+    public void natureElectricCombo()
+    {
+
+    }
 
 }
