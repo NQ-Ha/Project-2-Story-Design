@@ -1,5 +1,5 @@
 {
-    "name": "StarterAssets",
+    "name": "SimpleInput",
     "maps": [
         {
             "name": "Player",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Swap",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "e278a111-ec64-4c4c-974e-27d360930f90",
                     "expectedControlType": "Button",
@@ -271,11 +271,11 @@
                 {
                     "name": "",
                     "id": "6be3bd51-d35f-412b-a76c-5c2e8dc6078a",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Swap",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
