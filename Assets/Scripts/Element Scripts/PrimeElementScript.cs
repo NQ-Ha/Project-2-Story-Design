@@ -14,14 +14,26 @@ public class PrimeElementScript : MonoBehaviour
     public float cdTime = 3;
 
     [Header("")]
-    [SerializeField] TriggerElementScript otherElement;
-    [SerializeField] bool cdCheck;
-    [SerializeField] float cdCountDown;
+    public TriggerElementScript otherElement;
+    public bool cdCheck;
+    public float cdCountDown;
+    public Material inertMaterial;
+    public Material originalMaterial;
+
+    private GameObject comboElementSystem;
+    private ComboElementScript comboElementScript;
+
+    private void Awake()
+    {
+        comboElementSystem = GameObject.FindGameObjectWithTag("comboElementScript");
+        inertMaterial = GameObject.FindGameObjectWithTag("inertMaterial").GetComponent<MeshRenderer>().material;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-
+        comboElementScript = comboElementSystem.GetComponent<ComboElementScript>();
+        originalMaterial = gameObject.GetComponent<MeshRenderer>().material;
     }
 
     // Update is called once per frame
@@ -29,11 +41,17 @@ public class PrimeElementScript : MonoBehaviour
     {
         if (cdCheck == true)
         {
+            gameObject.GetComponent<MeshRenderer>().material = inertMaterial;
             cdCountDown -= Time.deltaTime;
-            if(cdCountDown <= 0)
+            if (cdCountDown > 0)
+            {
+                gameObject.GetComponent<MeshRenderer>().material.color = (originalMaterial.color*(cdTime*(cdTime-cdCountDown)));
+            }
+            else if (cdCountDown <= 0)
             {
                 cdCheck = false;
                 cdCountDown = 0;
+                gameObject.GetComponent<MeshRenderer>().material = originalMaterial;
             }
         }
     }
@@ -104,47 +122,4 @@ public class PrimeElementScript : MonoBehaviour
             cdCountDown = cdTime;
         }
     }
-
-    // Effect of a primed fire and a trigger electric combo
-    public void fireElectricCombo()
-    {
-
-    }
-
-    // Effect of a primed fire and a trigger nature combo
-    public void fireNatureCombo()
-    {
-
-    }
-
-    // Effect of a primed water and a trigger electric
-    public void waterElectricCombo()
-    {
-
-    }
-
-    // Effect of a primed water and a trigger nature
-    public void waterNatureCombo()
-    {
-
-    }
-
-    // Effect of a double electric combo
-    public void electricElectircCombo()
-    {
-
-    }
-
-    // Effect of a primed electric and trigger nature combo 
-    public void electricNatureCombo()
-    {
-
-    }
-
-    // Effect of a primed nature and a trigger electric combo
-    public void natureElectricCombo()
-    {
-
-    }
-
 }

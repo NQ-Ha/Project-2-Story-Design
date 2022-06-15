@@ -7,6 +7,12 @@ TagManager:
   - CinemachineTarget
   - Bullet
   - modeTrigger
+  - modeSwitch
+  - modeButton
+  - modeWeight
+  - Primed
+  - comboElementScript
+  - inertMaterial
   layers:
   - Default
   - TransparentFX

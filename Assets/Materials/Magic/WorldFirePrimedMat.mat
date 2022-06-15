@@ -148,7 +148,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Base_Colour: {r: 0, g: 0, b: 0, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.21698111, g: 0, b: 0, a: 1}
     - _EffectEmission_1: {r: 0.18867922, g: 0.002669984, b: 0.0047140745, a: 0}
     - _EffectEmission_2: {r: 0.09411765, g: 0.010440349, b: 0.0039215707, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
