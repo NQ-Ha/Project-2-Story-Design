@@ -45,7 +45,7 @@ public class PrimeElementScript : MonoBehaviour
             cdCountDown -= Time.deltaTime;
             if (cdCountDown > 0)
             {
-                gameObject.GetComponent<MeshRenderer>().material.color = (originalMaterial.color*(cdTime*(cdTime-cdCountDown)));
+                gameObject.GetComponent<MeshRenderer>().material.color = (originalMaterial.color/(cdTime/(cdTime-cdCountDown)));
             }
             else if (cdCountDown <= 0)
             {
