@@ -7,6 +7,7 @@ public class ComboElementScript : MonoBehaviour
     [Header("Visual FX")]
     public GameObject fireFX;
     public GameObject smokeFX;
+    public GameObject plasmaExplodeFX;
 
 
     // Effect of a primed fire and a trigger electric combo

@@ -13,6 +13,10 @@ public class PrimeElementScript : MonoBehaviour
     [Header("Primed Magic Variables")]
     public float cdTime = 3;
 
+    [Header("Scripts")]
+    public ElectricChainScript electricChainScript;
+    public ComboInstantiationScript comboInstantScript;
+
     [Header("")]
     public TriggerElementScript otherElement;
     public bool cdCheck;
@@ -34,6 +38,8 @@ public class PrimeElementScript : MonoBehaviour
     {
         comboElementScript = comboElementSystem.GetComponent<ComboElementScript>();
         originalMaterial = gameObject.GetComponent<MeshRenderer>().material;
+        if(gameObject.GetComponent<ComboInstantiationScript>() == true)
+        comboInstantScript = gameObject.GetComponent<ComboInstantiationScript>();
     }
 
     // Update is called once per frame
@@ -62,64 +68,64 @@ public class PrimeElementScript : MonoBehaviour
         {
             otherElement = other.gameObject.GetComponent<TriggerElementScript>();
             print(other.gameObject + " trigger Electric: " + otherElement.triggerElectric + " | " + "trigger Nature: " + otherElement.triggerNature);
+            if (cdCheck == false)
+            {
+                if (primeFire == true)
+                {
+                    if (otherElement.triggerElectric == true)
+                    {
+                        var plasmaExplode = Instantiate(comboElementScript.plasmaExplodeFX, gameObject.transform.position, Quaternion.identity) as GameObject;
+                        Destroy(plasmaExplode, 1.0f);
+                    }
+                    else if (otherElement.triggerNature == true)
+                    {
+
+                    }
+                }
+                else if (primeWater == true)
+                {
+                    if (otherElement.triggerElectric == true)
+                    {
+
+                    }
+                    else if (otherElement.triggerNature == true)
+                    {
+
+                    }
+                }
+                else if (primeElectric == true)
+                {
+                    if (otherElement.triggerElectric == true)
+                    {
+                        electricChainScript.toggleChain();
+                    }
+                    else if (otherElement.triggerNature == true)
+                    {
+                        comboInstantScript.InstantiateObject(gameObject.GetComponent<Transform>());
+                    }
+                }
+                else if (primeNature == true)
+                {
+                    if (otherElement.triggerElectric == true)
+                    {
+
+                    }
+                    else if (otherElement.triggerNature == true)
+                    {
+
+                    }
+                }
+                else
+                {
+                    print("No Primed Element found.");
+                }
+                cdCheck = true;
+                cdCountDown = cdTime;
+            }
         }
         else
         {
             print(other.gameObject + ": No script is here");
-        }
-
-        if (cdCheck == false)
-        {
-            if (primeFire == true)
-            {
-                if (otherElement.triggerElectric == true)
-                {
-
-                }
-                else if (otherElement.triggerNature == true)
-                {
-
-                }
-            }
-            else if (primeWater == true)
-            {
-                if (otherElement.triggerElectric == true)
-                {
-
-                }
-                else if (otherElement.triggerNature == true)
-                {
-
-                }
-            }
-            else if (primeElectric == true)
-            {
-                if (otherElement.triggerElectric == true)
-                {
-
-                }
-                else if (otherElement.triggerNature == true)
-                {
-
-                }
-            }
-            else if (primeNature == true)
-            {
-                if (otherElement.triggerElectric == true)
-                {
-
-                }
-                else if (otherElement.triggerNature == true)
-                {
-
-                }
-            }
-            else
-            {
-                print("No Primed Element found.");
-            }
-            cdCheck = true;
-            cdCountDown = cdTime;
         }
     }
 }

@@ -10,8 +10,8 @@ public class ElectricChainScript : MonoBehaviour
 
     public GameObject projectileObj;
     public GameObject trailFX;
-    public bool staticTouch;
-    public float chainTimeLimit = 6;
+    public bool staticActive;
+    public float chainTimeLimit = 3;
 
     [SerializeField] List<GameObject> primedObjList = new List<GameObject>();
 
@@ -24,32 +24,21 @@ public class ElectricChainScript : MonoBehaviour
     {
         staticRangeVector3 = new Vector3(staticRangeScale, staticRangeScale, staticRangeScale);
         originElementScript = staticOriginObj.GetComponent<PrimeElementScript>();
+        originElementScript.electricChainScript = gameObject.GetComponent<ElectricChainScript>();
         staticRangeObj.transform.localScale = new Vector3(0, 0, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(originElementScript.cdCheck == true && originElementScript.otherElement.triggerElectric == true)
+        if(staticActive == true)
         {
-            staticTouch = true;
-            chainTime = chainTimeLimit;
-            chainTime -= Time.deltaTime;
-            if (staticTouch == true && chainTime > 0)
-            {
-                staticRangeObj.transform.localScale = staticRangeVector3 * (originElementScript.cdCountDown / originElementScript.cdTime);
-            }
-            else if (chainTime <= 0)
-            {
-                staticRangeObj.transform.localScale = new Vector3(0, 0, 0);
-                staticTouch = false;
-                chainTime = 0;
-            }
+            staticRangeObj.transform.localScale = staticRangeVector3 * (originElementScript.cdCountDown / originElementScript.cdTime);
         }
-        else if(staticTouch == false)
+        else if(staticActive == false || originElementScript.cdCountDown <= 0)
         {
             staticRangeObj.transform.localScale = new Vector3(0, 0, 0);
-            chainTime = 0;
+            staticActive = false;
         }
     }
 
@@ -100,5 +89,10 @@ public class ElectricChainScript : MonoBehaviour
         var trailObj = Instantiate(projectile, staticOriginObj.transform.position, Quaternion.identity) as GameObject;
         trailObj.GetComponent<TrailingScript>().destinationVec = destination;
         Destroy(trailObj, 0.5f);
+    }
+
+    public void toggleChain()
+    {
+        staticActive = !staticActive;
     }
 }
